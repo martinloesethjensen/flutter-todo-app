@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:todo_app/add_task_dialog.dart';
+import 'package:todo_app/screens/add_task_dialog.dart';
 
-import 'task.dart';
+import '../model/task.dart';
 
 class TaskListView extends StatefulWidget {
   @override
@@ -21,7 +21,8 @@ class _TaskListViewState extends State<TaskListView> {
           onPressed: () => toggleTask(task)),
       title: Text(task.name),
       subtitle: (task.detail != null) ? Text(task.detail) : null,
-      trailing: Icon(Icons.delete_forever), // TODO: Delete a task
+      trailing: Icon(Icons.delete_forever),
+      // TODO: Delete a task
       onTap: () {}, // TODO: Show details
     );
   }
@@ -50,7 +51,7 @@ class _TaskListViewState extends State<TaskListView> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: _addTask,
         child: Icon(Icons.add),
       ),
     );
@@ -63,14 +64,19 @@ class _TaskListViewState extends State<TaskListView> {
   }
 
   _addTask() async {
-//    final task = await Navigator.push(
-//        context,
-//        MaterialPageRoute(
-//            builder: (context) => AddTaskDialog(), fullscreenDialog: false));
-//    if (task != null) {
-//      setState(() {
-//        Task.tasks.add(task)
-//      });
-//    }
+    final task = await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AddTaskDialog(),
+        fullscreenDialog: true,
+      ),
+    );
+
+    if (task != null) {
+      setState(() {
+        Task.tasks.add(task);
+      });
+    }
   }
 }
+
