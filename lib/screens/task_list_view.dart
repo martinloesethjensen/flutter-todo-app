@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/screens/add_task_dialog.dart';
@@ -18,10 +20,13 @@ class _TaskListViewState extends State<TaskListView> {
           icon: (task.completed)
               ? Icon(Icons.check_circle)
               : Icon(Icons.radio_button_unchecked),
-          onPressed: () => toggleTask(task)),
+          onPressed: () => _toggleTask(task)),
       title: Text(task.name),
       subtitle: (task.detail != null) ? Text(task.detail) : null,
-      trailing: Icon(Icons.delete_forever),
+      trailing: IconButton(
+        icon: Icon(Icons.delete_forever),
+        onPressed: () => _deleteTask(task),
+      ),
       // TODO: Delete a task
       onTap: () {}, // TODO: Show details
     );
@@ -57,10 +62,64 @@ class _TaskListViewState extends State<TaskListView> {
     );
   }
 
-  toggleTask(Task task) {
+  _toggleTask(Task task) {
     setState(() {
       task.completed = !task.completed;
     });
+  }
+
+  _deleteTask(Task task) async {
+    final confirmed = (Platform.isIOS)
+        ? await showCupertinoDialog<bool>(
+            context: context,
+            builder: (context) => CupertinoAlertDialog(
+              title: const Text('Delete Task?'),
+              content: const Text('This task will be permanently deleted.'),
+              actions: <Widget>[
+                CupertinoDialogAction(
+                  child: const Text('Delete'),
+                  isDestructiveAction: true,
+                  onPressed: () {
+                    Navigator.of(context).pop(true);
+                  },
+                ),
+                CupertinoDialogAction(
+                  child: const Text('Cancel'),
+                  isDefaultAction: true,
+                  onPressed: () {
+                    Navigator.of(context).pop(false);
+                  },
+                ),
+              ],
+            ),
+          )
+        : await showDialog<bool>(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: const Text('Delete Task?'),
+              content: const Text('This task will be permanently deleted.'),
+              actions: <Widget>[
+                FlatButton(
+                  child: const Text("CANCEL"),
+                  onPressed: () {
+                    Navigator.of(context).pop(false);
+                  },
+                ),
+                FlatButton(
+                  child: const Text("DELETE"),
+                  onPressed: () {
+                    Navigator.of(context).pop(true);
+                  },
+                ),
+              ],
+            ),
+          );
+
+    if (confirmed ?? false) {
+      setState(() {
+        Task.tasks.remove(task);
+      });
+    }
   }
 
   _addTask() async {
@@ -79,4 +138,3 @@ class _TaskListViewState extends State<TaskListView> {
     }
   }
 }
-
