@@ -7,6 +7,7 @@ class TodoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false as bool,
       title: "Flutter TODO Demo",
       theme: ThemeData.dark(),
       home: TaskListView(),
