@@ -37,7 +37,6 @@ void main() {
       (WidgetTester tester) async {
     // Given
     var oldTaskListCount = Task.tasks.length;
-    print(Task.tasks.length);
 
     // When
     await tester.pumpWidget(MaterialApp(home: TaskListView()));
