@@ -21,6 +21,11 @@ jobs:
       with:
         args: pub get
     
+    - name: run flutter analyze
+      uses: steebchen/flutter@v1.0.0
+      with:
+        args: analyze
+    
     - name: run tests
       uses: steebchen/flutter@v1.0.0
       with:
