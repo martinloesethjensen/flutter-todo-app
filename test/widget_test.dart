@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -35,7 +33,8 @@ void main() {
     expect(find.byType(Container), findsWidgets);
   });
 
-  testWidgets("should add and remove a task from the todo list", (WidgetTester tester) async {
+  testWidgets("should add and remove a task from the todo list",
+      (WidgetTester tester) async {
     // Given
     var oldTaskListCount = Task.tasks.length;
     print(Task.tasks.length);
@@ -45,8 +44,10 @@ void main() {
     await tester.tap(find.byType(FloatingActionButton));
     await tester.pumpAndSettle();
 
-    await tester.enterText(find.byKey(Key("add_task_name_text_field")), "task_name");
-    await tester.enterText(find.byKey(Key("add_task_details_text_field")), "task_details");
+    await tester.enterText(
+        find.byKey(Key("add_task_name_text_field")), "task_name");
+    await tester.enterText(
+        find.byKey(Key("add_task_details_text_field")), "task_details");
     await tester.tap(find.byType(FlatButton));
     await tester.pumpAndSettle();
 
