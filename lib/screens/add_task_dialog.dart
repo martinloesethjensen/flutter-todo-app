@@ -35,13 +35,14 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
       ),
       body: Form(
         child: ListView(
-          padding: const EdgeInsets.all(16.0),
+          key: Key("add_task_form"),
+          padding: EdgeInsets.all(16.0),
           children: <Widget>[
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              padding: EdgeInsets.symmetric(vertical: 8.0),
               alignment: Alignment.bottomLeft,
               child: TextField(
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Name',
                   filled: true,
                 ),
@@ -51,10 +52,10 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
               ),
             ),
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              padding: EdgeInsets.symmetric(vertical: 8.0),
               alignment: Alignment.bottomLeft,
               child: TextField(
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Details',
                   filled: true,
                 ),

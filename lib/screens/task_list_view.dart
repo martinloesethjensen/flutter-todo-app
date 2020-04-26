@@ -27,7 +27,6 @@ class _TaskListViewState extends State<TaskListView> {
         icon: Icon(Icons.delete_forever),
         onPressed: () => _deleteTask(task),
       ),
-      // TODO: Delete a task
       onTap: () {}, // TODO: Show details
     );
   }
@@ -73,18 +72,18 @@ class _TaskListViewState extends State<TaskListView> {
         ? await showCupertinoDialog<bool>(
             context: context,
             builder: (context) => CupertinoAlertDialog(
-              title: const Text('Delete Task?'),
-              content: const Text('This task will be permanently deleted.'),
+              title: Text('Delete Task?'),
+              content: Text('This task will be permanently deleted.'),
               actions: <Widget>[
                 CupertinoDialogAction(
-                  child: const Text('Delete'),
+                  child: Text('Delete'),
                   isDestructiveAction: true,
                   onPressed: () {
                     Navigator.of(context).pop(true);
                   },
                 ),
                 CupertinoDialogAction(
-                  child: const Text('Cancel'),
+                  child: Text('Cancel'),
                   isDefaultAction: true,
                   onPressed: () {
                     Navigator.of(context).pop(false);
@@ -96,17 +95,17 @@ class _TaskListViewState extends State<TaskListView> {
         : await showDialog<bool>(
             context: context,
             builder: (context) => AlertDialog(
-              title: const Text('Delete Task?'),
-              content: const Text('This task will be permanently deleted.'),
+              title: Text('Delete Task?'),
+              content: Text('This task will be permanently deleted.'),
               actions: <Widget>[
                 FlatButton(
-                  child: const Text("CANCEL"),
+                  child: Text("CANCEL"),
                   onPressed: () {
                     Navigator.of(context).pop(false);
                   },
                 ),
                 FlatButton(
-                  child: const Text("DELETE"),
+                  child: Text("DELETE"),
                   onPressed: () {
                     Navigator.of(context).pop(true);
                   },
