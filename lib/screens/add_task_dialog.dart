@@ -42,6 +42,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
               padding: EdgeInsets.symmetric(vertical: 8.0),
               alignment: Alignment.bottomLeft,
               child: TextField(
+                key: Key("add_task_name_text_field"),
                 decoration: InputDecoration(
                   labelText: 'Name',
                   filled: true,
@@ -55,6 +56,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
               padding: EdgeInsets.symmetric(vertical: 8.0),
               alignment: Alignment.bottomLeft,
               child: TextField(
+                key: Key("add_task_details_text_field"),
                 decoration: InputDecoration(
                   labelText: 'Details',
                   filled: true,

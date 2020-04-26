@@ -16,6 +16,7 @@ class _TaskListViewState extends State<TaskListView> {
 
   ListTile widgetListTile(Task task) {
     return ListTile(
+      key: Key(task.name),
       leading: IconButton(
           icon: (task.completed)
               ? Icon(Icons.check_circle)
@@ -24,6 +25,7 @@ class _TaskListViewState extends State<TaskListView> {
       title: Text(task.name),
       subtitle: (task.detail != null) ? Text(task.detail) : null,
       trailing: IconButton(
+        key: Key("${task.name}_delete_button"),
         icon: Icon(Icons.delete_forever),
         onPressed: () => _deleteTask(task),
       ),
@@ -76,14 +78,14 @@ class _TaskListViewState extends State<TaskListView> {
               content: Text('This task will be permanently deleted.'),
               actions: <Widget>[
                 CupertinoDialogAction(
-                  child: Text('Delete'),
+                  child: Text('DELETE'),
                   isDestructiveAction: true,
                   onPressed: () {
                     Navigator.of(context).pop(true);
                   },
                 ),
                 CupertinoDialogAction(
-                  child: Text('Cancel'),
+                  child: Text('CANCEL'),
                   isDefaultAction: true,
                   onPressed: () {
                     Navigator.of(context).pop(false);
