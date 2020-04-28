@@ -16,22 +16,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: install dependencies
-      uses: steebchen/flutter@v1.0.0
-      with:
-        args: pub get
-    
-    - name: run flutter analyze
-      uses: steebchen/flutter@v1.0.0
-      with:
-        args: analyze
-    
-    - name: run tests
-      uses: steebchen/flutter@v1.0.0
-      with:
-        args: test
-
-    - name: build apk
-      uses: steebchen/flutter@v1.0.0
-      with:
-        args: build apk --release
+    - name: Flutter action
+      uses: subosito/flutter-action@v1.3.0
+    - run: flutter pub get
+    - run: flutter analyze
+    - run: flutter test
+    - run: flutter drive --target=test_driver/app.dart
+    - run: flutter build apk
