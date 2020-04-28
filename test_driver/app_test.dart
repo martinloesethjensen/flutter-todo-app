@@ -26,6 +26,8 @@ void main() {
       driver = await FlutterDriver.connect();
     });
 
+    sleep(Duration(seconds: 4));
+
     test('check flutter driver health', () async {
       Health health = await driver.checkHealth();
       print(health.status);
