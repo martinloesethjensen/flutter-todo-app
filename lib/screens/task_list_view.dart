@@ -22,7 +22,10 @@ class _TaskListViewState extends State<TaskListView> {
               ? Icon(Icons.check_circle)
               : Icon(Icons.radio_button_unchecked),
           onPressed: () => _toggleTask(task)),
-      title: Text(task.name),
+      title: Text(
+        task.name,
+        key: Key("${task.name}_title"),
+      ),
       subtitle: (task.detail != null) ? Text(task.detail) : null,
       trailing: IconButton(
         key: Key("${task.name}_delete_button"),
@@ -57,6 +60,7 @@ class _TaskListViewState extends State<TaskListView> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        key: Key('add_task_button'),
         onPressed: _addTask,
         child: Icon(Icons.add),
       ),

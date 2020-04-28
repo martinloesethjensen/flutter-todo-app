@@ -25,6 +25,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
         title: Text('New Task'),
         actions: <Widget>[
           FlatButton(
+            key: Key('save_new_task'),
             child: Text(
               'SAVE',
               style: theme.textTheme.body1.copyWith(color: Colors.white),
