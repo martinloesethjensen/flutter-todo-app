@@ -26,6 +26,7 @@ void main() {
       driver = await FlutterDriver.connect();
     });
 
+    // To make sure the device is ready before starting the tests
     sleep(Duration(seconds: 4));
 
     test('check flutter driver health', () async {
@@ -45,14 +46,21 @@ void main() {
 
       await driver.tap(buttonFinder);
 
+      sleep(Duration(seconds: 1));
+
       await driver.tap(addTaskNameTextField);
+
+      sleep(Duration(seconds: 1));
 
       await driver.enterText("task_name", timeout: Duration(milliseconds: 300));
 
       await driver.tap(addTaskDetailsTextField);
 
-      await driver.enterText("task_details",
-          timeout: Duration(milliseconds: 300));
+      sleep(Duration(seconds: 1));
+
+      await driver.enterText("task_details", timeout: Duration(milliseconds: 300));
+
+      sleep(Duration(seconds: 1));
 
       await driver.tap(saveButtonFinder, timeout: Duration(milliseconds: 500));
 
@@ -66,10 +74,9 @@ void main() {
       await driver.tap(deleteTaskButtonFinder,
           timeout: Duration(milliseconds: 500));
 
-      sleep(Duration(seconds: 2));
+      sleep(Duration(seconds: 1));
 
-      await driver.tap(find.text("DELETE"),
-          timeout: Duration(milliseconds: 300));
+      await driver.tap(find.text("DELETE"), timeout: Duration(milliseconds: 300));
 
       expect(Task.tasks.length, oldTaskListCount);
     });
