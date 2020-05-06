@@ -28,7 +28,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
             key: Key('save_new_task'),
             child: Text(
               'SAVE',
-              style: theme.textTheme.body1.copyWith(color: Colors.white),
+              style: theme.textTheme.bodyText2.copyWith(color: Colors.white),
             ),
             onPressed: _save,
           ),
@@ -48,7 +48,7 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
                   labelText: 'Name',
                   filled: true,
                 ),
-                style: theme.textTheme.headline,
+                style: theme.textTheme.headline5,
                 onChanged: (value) => _taskName = value,
                 autofocus: true,
               ),
