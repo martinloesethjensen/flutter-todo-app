@@ -8,11 +8,20 @@ class AddTaskDialog extends StatefulWidget {
 }
 
 class _AddTaskDialogState extends State<AddTaskDialog> {
-  String _taskName = '';
-  String _taskDetails;
+  TextEditingController _taskNameController = TextEditingController();
+  TextEditingController _taskDetailsController = TextEditingController();
+  
+  @override
+  void dispose() {
+    _taskNameController.dispose();
+    _taskDetailsController.dispose();
+    super.dispose();
+  }
 
   void _save() {
-    final task = _taskName.isNotEmpty ? Task(_taskName, _taskDetails) : null;
+    final taskName = _taskNameController.value.text;
+    final taskDetails = _taskDetailsController.value.text;
+    final task = taskName.isNotEmpty ? Task(taskName, taskDetails) : null;
     Navigator.of(context).pop(task);
   }
 
@@ -44,12 +53,13 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
               alignment: Alignment.bottomLeft,
               child: TextField(
                 key: Key("add_task_name_text_field"),
+                textInputAction: TextInputAction.next,
                 decoration: InputDecoration(
                   labelText: 'Name',
                   filled: true,
                 ),
                 style: theme.textTheme.headline5,
-                onChanged: (value) => _taskName = value,
+                controller: _taskNameController,
                 autofocus: true,
               ),
             ),
@@ -58,11 +68,13 @@ class _AddTaskDialogState extends State<AddTaskDialog> {
               alignment: Alignment.bottomLeft,
               child: TextField(
                 key: Key("add_task_details_text_field"),
+                textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
                   labelText: 'Details',
                   filled: true,
                 ),
-                onChanged: (value) => _taskDetails = value,
+                controller: _taskDetailsController,
+                onSubmitted: (_) => _save(),
               ),
             ),
           ],
