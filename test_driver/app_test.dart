@@ -58,7 +58,8 @@ void main() {
 
       sleep(Duration(seconds: 1));
 
-      await driver.enterText("task_details", timeout: Duration(milliseconds: 300));
+      await driver.enterText("task_details",
+          timeout: Duration(milliseconds: 300));
 
       sleep(Duration(seconds: 1));
 
@@ -76,7 +77,8 @@ void main() {
 
       sleep(Duration(seconds: 1));
 
-      await driver.tap(find.text("DELETE"), timeout: Duration(milliseconds: 300));
+      await driver.tap(find.text("DELETE"),
+          timeout: Duration(milliseconds: 300));
 
       expect(Task.tasks.length, oldTaskListCount);
     });
