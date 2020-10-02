@@ -28,6 +28,7 @@
 .pub-cache/
 .pub/
 /build/
+ios/Flutter/.last_build_id
 
 # Android related
 **/android/**/gradle-wrapper.jar

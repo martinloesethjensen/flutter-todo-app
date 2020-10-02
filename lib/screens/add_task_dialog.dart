@@ -10,7 +10,7 @@ class AddTaskDialog extends StatefulWidget {
 class _AddTaskDialogState extends State<AddTaskDialog> {
   TextEditingController _taskNameController = TextEditingController();
   TextEditingController _taskDetailsController = TextEditingController();
-  
+
   @override
   void dispose() {
     _taskNameController.dispose();
