@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/screens/add_task_dialog.dart';
 
@@ -30,9 +31,14 @@ class _TaskListViewState extends State<TaskListView> {
       trailing: IconButton(
         key: Key("${task.name}_delete_button"),
         icon: Icon(Icons.delete_forever),
-        onPressed: () => _deleteTask(task),
+        onPressed: () {
+          print('Web: $kIsWeb');
+          _deleteTask(task);
+        },
       ),
-      onTap: () {}, // TODO: Show details
+      onTap: () {
+        print('Web: $kIsWeb');
+      }, // TODO: Show details
     );
   }
 
@@ -74,6 +80,7 @@ class _TaskListViewState extends State<TaskListView> {
   }
 
   _deleteTask(Task task) async {
+    print(kIsWeb);
     final confirmed = (Platform.isIOS)
         ? await showCupertinoDialog<bool>(
             context: context,
